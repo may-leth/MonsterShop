@@ -1,0 +1,4 @@
+package com.FemCoders.MonsterShop.models;
+
+public class Review {
+}
