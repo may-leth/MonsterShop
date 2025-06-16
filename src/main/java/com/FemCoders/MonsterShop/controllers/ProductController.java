@@ -24,7 +24,7 @@ public class ProductController {
         return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
     }
 
-    @PostMapping("/{Id}")
+    @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product newProduct){
         Product createdProduct = productService.addProduct(newProduct);
         return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
