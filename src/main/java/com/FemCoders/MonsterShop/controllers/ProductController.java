@@ -29,4 +29,10 @@ public class ProductController {
         Product createdProduct = productService.addProduct(newProduct);
         return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProduct(@PathVariable Long id){
+        Product product = productService.getProduct(id);
+        return ResponseEntity.ok(product);
+    }
 }
