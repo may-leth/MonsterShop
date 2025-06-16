@@ -5,6 +5,7 @@ import com.FemCoders.MonsterShop.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -21,4 +22,14 @@ public class ProductService {
     public Product addProduct(Product newProduct){
         return productRepository.save(newProduct);
     }
+
+    public Product getProduct(Long id){
+        return productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado con el id: " + id));
+    }
+
+    public void deleteProduct(long id){
+        productRepository.deleteById(id);
+    }
+
 }
