@@ -39,11 +39,12 @@ public class ProductService {
         });
     }
 
-    public void deleteProduct(long id){
+    public boolean deleteProduct(long id){
         if (!productRepository.existsById(id)){
             throw new RuntimeException("Producto no encontrado con el id: " + id);
         }
         productRepository.deleteById(id);
+        return false;
     }
 
 }
