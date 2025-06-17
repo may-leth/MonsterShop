@@ -17,10 +17,11 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Review>> getReviews(){
-        List<Review> reviews = reviewService.getReviews();
-        return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<Review> getReview(@PathVariable long id){
+        return reviewService.getReview(id)
+                .map(review -> new ResponseEntity<>(review, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @PostMapping
