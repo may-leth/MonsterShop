@@ -1,6 +1,12 @@
 package com.FemCoders.MonsterShop.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "reviews")
 public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private double rating;
