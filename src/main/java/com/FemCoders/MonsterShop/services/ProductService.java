@@ -27,7 +27,22 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public Optional<Product> updateProduct(Long id, Product updatedProduct){
+        return productRepository.findById(id).map(existing -> {
+            existing.setName(updatedProduct.getName());
+            existing.setPrice(updatedProduct.getPrice());
+            existing.setImageUrl(updatedProduct.getImageUrl());
+            existing.setRating(updatedProduct.getRating());
+            existing.setReviewCount(updatedProduct.getReviewCount());
+            existing.setFeatured(updatedProduct.isFeatured());
+            return productRepository.save(existing);
+        });
+    }
+
     public void deleteProduct(long id){
+        if (!productRepository.existsById(id)){
+            throw new RuntimeException("Producto no encontrado con el id: " + id);
+        }
         productRepository.deleteById(id);
     }
 
