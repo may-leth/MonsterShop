@@ -41,10 +41,10 @@ public class ProductService {
 
     public boolean deleteProduct(long id){
         if (!productRepository.existsById(id)){
-            throw new RuntimeException("Producto no encontrado con el id: " + id);
+            return false;
         }
         productRepository.deleteById(id);
-        return false;
+        return true;
     }
 
 }
