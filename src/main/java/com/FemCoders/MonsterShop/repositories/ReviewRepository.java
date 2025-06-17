@@ -1,4 +1,7 @@
 package com.FemCoders.MonsterShop.repositories;
 
-public interface ReviewRepository {
+import com.FemCoders.MonsterShop.models.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 }
