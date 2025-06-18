@@ -13,6 +13,10 @@ public class Review {
     private double rating;
     private String body;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     public Review() {
     }
 
@@ -22,8 +26,19 @@ public class Review {
         this.body = body;
     }
 
-    public Review(String username) {
+    public Review(String username, double rating, String body, Product product) {
         this.username = username;
+        this.rating = rating;
+        this.body = body;
+        this.product = product;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Long getId() {
