@@ -1,7 +1,9 @@
 package com.FemCoders.MonsterShop.dtos.Review;
 
 public record ReviewResponse (
+        Long id,
         String username,
         Double rating,
-        String body
+        String body,
+        Long productId
 ) {}

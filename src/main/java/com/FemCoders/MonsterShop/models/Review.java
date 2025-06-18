@@ -1,7 +1,6 @@
 package com.FemCoders.MonsterShop.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "reviews")
@@ -20,13 +19,8 @@ public class Review {
     public Review() {
     }
 
-    public Review(String username, double rating, String body) {
-        this.username = username;
-        this.rating = rating;
-        this.body = body;
-    }
-
-    public Review(String username, double rating, String body, Product product) {
+    public Review(Long id, String username, double rating, String body, Product product) {
+        this.id = id;
         this.username = username;
         this.rating = rating;
         this.body = body;

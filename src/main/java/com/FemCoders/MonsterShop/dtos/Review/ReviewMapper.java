@@ -1,24 +1,27 @@
 package com.FemCoders.MonsterShop.dtos.Review;
 
+import com.FemCoders.MonsterShop.models.Product;
 import com.FemCoders.MonsterShop.models.Review;
-import jdk.jfr.Category;
-
-import java.util.List;
 
 public class ReviewMapper {
-    public static Review dtoToEntity(ReviewRequest dto){
+    public static Review dtoToEntity(ReviewRequest dto, Product product){
         return new Review(
+                dto.id(),
                 dto.username(),
                 dto.rating(),
-                dto.body()
+                dto.body(),
+                product
         );
     }
 
     public static ReviewResponse entityToDto (Review review){
+        Long product = review.getProduct().getId();
         return new ReviewResponse(
+                review.getId(),
                 review.getUsername(),
                 review.getRating(),
-                review.getBody()
+                review.getBody(),
+                product
         );
     }
 }
