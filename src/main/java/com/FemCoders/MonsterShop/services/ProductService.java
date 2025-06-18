@@ -1,8 +1,8 @@
 package com.FemCoders.MonsterShop.services;
 
-import com.FemCoders.MonsterShop.dtos.ProductMapper;
-import com.FemCoders.MonsterShop.dtos.ProductRequest;
-import com.FemCoders.MonsterShop.dtos.ProductResponse;
+import com.FemCoders.MonsterShop.dtos.Product.ProductMapper;
+import com.FemCoders.MonsterShop.dtos.Product.ProductRequest;
+import com.FemCoders.MonsterShop.dtos.Product.ProductResponse;
 import com.FemCoders.MonsterShop.models.Product;
 import com.FemCoders.MonsterShop.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
