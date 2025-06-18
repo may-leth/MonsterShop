@@ -1,12 +1,10 @@
 package com.FemCoders.MonsterShop.controllers;
 
-import com.FemCoders.MonsterShop.dtos.ProductRequest;
-import com.FemCoders.MonsterShop.dtos.ProductResponse;
-import com.FemCoders.MonsterShop.models.Product;
+import com.FemCoders.MonsterShop.dtos.Product.ProductRequest;
+import com.FemCoders.MonsterShop.dtos.Product.ProductResponse;
 import com.FemCoders.MonsterShop.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
