@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -19,14 +20,10 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ReviewResponse> getReview(@PathVariable long id){
-        try{
-            ReviewResponse response = reviewService.getReview(id);
-            return ResponseEntity.ok(response);
-        } catch (NoSuchElementException exception) {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/{productId}")
+    public ResponseEntity<List<ReviewResponse>> getReviewByProduct(@PathVariable long productId){
+        List<ReviewResponse> reviews = reviewService.getReviewByProduct(productId);
+        return ResponseEntity.ok(reviews);
     }
 
     @PostMapping

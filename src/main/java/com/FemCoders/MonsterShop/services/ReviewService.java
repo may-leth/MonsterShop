@@ -3,7 +3,9 @@ package com.FemCoders.MonsterShop.services;
 import com.FemCoders.MonsterShop.dtos.Review.ReviewMapper;
 import com.FemCoders.MonsterShop.dtos.Review.ReviewRequest;
 import com.FemCoders.MonsterShop.dtos.Review.ReviewResponse;
+import com.FemCoders.MonsterShop.models.Product;
 import com.FemCoders.MonsterShop.models.Review;
+import com.FemCoders.MonsterShop.repositories.ProductRepository;
 import com.FemCoders.MonsterShop.repositories.ReviewRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +16,23 @@ import java.util.Optional;
 @Service
 public class ReviewService {
     private final ReviewRepository reviewRepository;
+    private final ProductRepository productRepository;
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository, ProductRepository productRepository) {
         this.reviewRepository = reviewRepository;
+        this.productRepository = productRepository;
     }
 
-    public ReviewResponse getReview(Long id){
-        Review review = reviewRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Reseña con ID " + id + " No encontrada"));
-        return ReviewMapper.entityToDto(review);
+    public List<ReviewResponse> getReviewByProduct(Long productId){
+        List<Review> reviews = reviewRepository.findByProductId(productId);
+        return reviews.stream().map(review -> ReviewMapper.entityToDto(review)).toList();
     }
 
     public ReviewResponse addReview(ReviewRequest reviewRequest){
-        Review newReview = ReviewMapper.dtoToEntity(reviewRequest);
-        Review saved = reviewRepository.save(newReview);
-        return  ReviewMapper.entityToDto(saved);
+        Product product = productRepository.findById(reviewRequest.productId())
+                .orElseThrow(() -> new IllegalArgumentException("No se ha encontrado el producto"));
+        Review newReview = ReviewMapper.dtoToEntity(reviewRequest, product);
+        Review savedReview = reviewRepository.save(newReview);
+        return ReviewMapper.entityToDto(savedReview);
     }
 }

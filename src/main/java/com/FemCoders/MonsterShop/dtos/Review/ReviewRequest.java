@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
 public record ReviewRequest(
+        Long id,
         @NotBlank(message = "El nombre de usuario es obligatorio")
         String username,
 
@@ -11,6 +12,7 @@ public record ReviewRequest(
         Double rating,
 
         @NotBlank(message = "El cuerpo de la reseña es obligatorio")
-        String body
+        String body,
+        Long productId
 ) {
 }
