@@ -1,10 +1,14 @@
 package com.FemCoders.MonsterShop.services;
 
+import com.FemCoders.MonsterShop.dtos.Review.ReviewMapper;
+import com.FemCoders.MonsterShop.dtos.Review.ReviewRequest;
+import com.FemCoders.MonsterShop.dtos.Review.ReviewResponse;
 import com.FemCoders.MonsterShop.models.Review;
 import com.FemCoders.MonsterShop.repositories.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -15,11 +19,15 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public Optional<Review> getReview(Long id){
-        return reviewRepository.findById(id);
+    public ReviewResponse getReview(Long id){
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Reseña con ID " + id + " No encontrada"));
+        return ReviewMapper.entityToDto(review);
     }
 
-    public Review addReview(Review newReview){
-        return reviewRepository.save(newReview);
+    public ReviewResponse addReview(ReviewRequest reviewRequest){
+        Review newReview = ReviewMapper.dtoToEntity(reviewRequest);
+        Review saved = reviewRepository.save(newReview);
+        return  ReviewMapper.entityToDto(saved);
     }
 }
