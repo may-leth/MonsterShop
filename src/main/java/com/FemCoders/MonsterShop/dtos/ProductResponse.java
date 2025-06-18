@@ -3,12 +3,14 @@ package com.FemCoders.MonsterShop.dtos;
 public record ProductResponse(
         Long id,
         String name,
-        double price,
+        Double price,
         String imageUrl,
-        double rating,
-        double productRating,
+        Double rating,
         int reviewCount,
-        boolean featured
+        Boolean featured
 ) {
 }
+
+
+
 
