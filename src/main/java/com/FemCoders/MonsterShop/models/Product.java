@@ -2,6 +2,9 @@ package com.FemCoders.MonsterShop.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -14,6 +17,9 @@ public class Product {
     private double rating;
     private int reviewCount;
     private boolean featured;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 
     public Product() {
     }
