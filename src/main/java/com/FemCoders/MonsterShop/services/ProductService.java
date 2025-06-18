@@ -8,6 +8,7 @@ import com.FemCoders.MonsterShop.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -29,20 +30,23 @@ public class ProductService {
         return ProductMapper.entityToDto(savedProduct);
     }
 
-    public Optional<Product> getProduct(Long id){
-        return productRepository.findById(id);
+    public Optional<ProductResponse> getProduct(Long id){
+        Optional<Product> Product = productRepository.findById(id);
+        return Product.map(product -> ProductMapper.entityToDto(product));
     }
 
-    public Optional<Product> updateProduct(Long id, Product updatedProduct){
-        return productRepository.findById(id).map(existing -> {
-            existing.setName(updatedProduct.getName());
-            existing.setPrice(updatedProduct.getPrice());
-            existing.setImageUrl(updatedProduct.getImageUrl());
-            existing.setRating(updatedProduct.getRating());
-            existing.setReviewCount(updatedProduct.getReviewCount());
-            existing.setFeatured(updatedProduct.isFeatured());
-            return productRepository.save(existing);
-        });
+    public ProductResponse updateProduct(Long id, ProductRequest updatedProduct){
+         Product existing = productRepository.findById(id)
+                 .orElseThrow(() -> new NoSuchElementException("Producto con ID " + id + " no encontrado"));
+            existing.setName(updatedProduct.name());
+            existing.setPrice(updatedProduct.price());
+            existing.setImageUrl(updatedProduct.imageUrl());
+            existing.setRating(updatedProduct.rating());
+            existing.setReviewCount(updatedProduct.reviewCount());
+            existing.setFeatured(updatedProduct.featured());
+
+            Product saved = productRepository.save(existing);
+            return ProductMapper.entityToDto(saved);
     }
 
     public boolean deleteProduct(long id){
