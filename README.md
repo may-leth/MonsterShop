@@ -45,7 +45,7 @@ Se utilizan mapeadores personalizados para convertir entre entidades y DTOs, y s
 1. **Clonar el repositorio**
 
 ```bash
-git clone https://github.com/usuario/monster-shop-backend.git
+git clone https://github.com/usuario/monster-shop-backend.git](https://github.com/may-leth/MonsterShop.git
 cd monster-shop-backend
 ```
 2. **Configurar la base de datos MySQL**
