@@ -6,7 +6,7 @@ import com.FemCoders.MonsterShop.models.Review;
 public class ReviewMapper {
     public static Review dtoToEntity(ReviewRequest dto, Product product){
         return new Review(
-                dto.id(),
+                null,
                 dto.username(),
                 dto.rating(),
                 dto.body(),

@@ -16,10 +16,10 @@ public record ProductRequest(
         String imageUrl,
 
         @Positive(message = "La calificación debe ser positiva")
-        double rating,
+        Double rating,
 
         @PositiveOrZero(message = "El número de reseñas debe ser positivo")
-        int reviewCount,
+        Integer reviewCount,
 
         @NotNull(message = "El campo featured es obligatorio")
         Boolean featured

@@ -1,18 +1,20 @@
 package com.FemCoders.MonsterShop.dtos.Review;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 
 public record ReviewRequest(
-        Long id,
         @NotBlank(message = "El nombre de usuario es obligatorio")
         String username,
 
-        @Positive(message = "La calificación no debe ser negativa")
+        @NotNull(message = "La calificación es obligatoria")
+        @Min(value = 1, message = "La calificación mínima es 1")
+        @Max(value = 5, message = "La calificación máxima es 5")
         Double rating,
 
-        @NotBlank(message = "El cuerpo de la reseña es obligatorio")
+
         String body,
+
+        @NotNull(message = "El ID del producto es obligatorio")
         Long productId
 ) {
 }

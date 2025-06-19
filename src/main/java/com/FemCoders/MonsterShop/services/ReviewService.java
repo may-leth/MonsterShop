@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
@@ -25,7 +26,7 @@ public class ReviewService {
 
     public List<ReviewResponse> getReviewByProduct(Long productId){
         List<Review> reviews = reviewRepository.findByProductId(productId);
-        return reviews.stream().map(review -> ReviewMapper.entityToDto(review)).toList();
+        return reviews.stream().map(review -> ReviewMapper.entityToDto(review)).collect(Collectors.toList());
     }
 
     public ReviewResponse addReview(ReviewRequest reviewRequest){

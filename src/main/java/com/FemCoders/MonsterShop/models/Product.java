@@ -3,6 +3,7 @@ package com.FemCoders.MonsterShop.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -87,5 +88,9 @@ public class Product {
 
     public void setFeatured(boolean featured) {
         this.featured = featured;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
     }
 }
